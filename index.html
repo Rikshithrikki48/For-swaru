@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Queen Swaru</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #ffe5ec;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden; /* Prevents scrollbars when button jumps */
+        }
+
+        #proposal-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 350px;
+            z-index: 10;
+        }
+
+        h1 { color: #ff4d6d; font-size: 1.8rem; }
+
+        .btn-container {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d;
+            color: white;
+            transition: 0.3s;
+        }
+
+        #noBtn {
+            background-color: #fb6f92;
+            color: white;
+            position: absolute; /* Allows free movement across screen */
+            transition: 0.1s;
+        }
+
+        /* Success Section (Initially Hidden) */
+        #success-page {
+            display: none;
+        }
+
+        .queen-msg {
+            font-size: 1.4rem;
+            color: #ff4d6d;
+            margin-top: 15px;
+        }
+
+        .photo-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 3px solid #ffb3c1;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="proposal-card">
+        <div id="question-box">
+            <h1>Will you be my Valentine? 💖</h1>
+            <div class="btn-container">
+                <button id="yesBtn" onclick="showLove()">Yes</button>
+                <button id="noBtn" onmousedown="moveNo()" onclick="moveNo()">No</button>
+            </div>
+        </div>
+
+        <div id="success-page">
+            <h1 class="queen-msg">Thank you my dear Swaru, the Queen! 👑</h1>
+            <h2 style="color: #ff85a1;">I love you ❤️</h2>
+            
+            <div class="photo-container">
+                <img src="myphoto.jpg" alt="Swaru & Me">
+                <img src="myphoto1.jpg" alt="Beautiful Memories">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function moveNo() {
+            const btn = document.getElementById('noBtn');
+            
+            // Generate coordinates so the button stays within visible screen area
+            const padding = 100;
+            const newX = Math.random() * (window.innerWidth - padding);
+            const newY = Math.random() * (window.innerHeight - padding);
+            
+            btn.style.left = newX + 'px';
+            btn.style.top = newY + 'px';
+        }
+
+        function showLove() {
+            // Hide everything else and show the Queen's message
+            document.getElementById('question-box').style.display = 'none';
+            document.getElementById('noBtn').style.display = 'none';
+            document.getElementById('success-page').style.display = 'block';
+            document.body.style.backgroundColor = "#ffc2d1";
+        }
+    </script>
+</body>
+</html>
